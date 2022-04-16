@@ -91,6 +91,26 @@ I used the glimpse() function to look at the column name and also some row in th
 
 ![glimpse](https://user-images.githubusercontent.com/89348077/163691116-ff95646a-8d9a-4415-97fd-6dd99734287a.JPG)
 
+To make it easier to use the dataset, I change the column name of the rideable_type to ride_type names function. The column is in the second column which is why I put 2 in square bracket.
+
+``` r
+names(ride_2021)[2]<- "ride_type"
+```
+
+I decided to select only the columns that will be relevant for the analysis with the select() function. 
+``` r
+trimmed_ride_2021 <- ride_2021 %>%  
+   select(ride_id, ride_type, started_at, ended_at, ride_length, start_station_name, start_station_id, end_station_name, end_station_id, member_casual)
+```
+I checked the column name with colnames(). Note that the new name of the dataset is trimmed_ride_2021
+``` r
+colnames(trimmed_ride_2021)
+```
+![image](https://user-images.githubusercontent.com/89348077/163691695-655b7e15-b4c5-41d2-8e6b-1237086fe1d9.png)
+
+
+
+
 
 
 
