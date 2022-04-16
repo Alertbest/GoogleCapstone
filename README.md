@@ -48,7 +48,49 @@ member_casual: this is the membership status of the rider, he can either be an a
 
 ## DATA PROCESSING
 
-The tool that will be used for processing this data is the R studio, this is because Excel can not handle the large size of the dataset. 
+The tool that will be used for processing this data is the R studio, this is because Excel can not handle the large size of the dataset. I started this process by installing the packages that will make the analysis easy.
+
+``` r
+install.packages("tidyverse")
+install.packages("lubridate")
+install.packages("dplyr")
+install.packages("ggplot2")
+```
+``` r
+library(tidyverse)
+library(lubridate)
+library(dplyr)
+library(ggplot2)
+```
+
+I then added the 12 months file to Rstudio in preparation for analysis. I used read_csv for this task as seen below:
+
+``` R
+jan_ride <- read_csv("jan_2021.csv")
+feb_ride <- read_csv("feb_2021.csv")
+mar_ride <- read_csv("mar_2021.csv")
+april_ride <- read_csv("april_2021.csv")
+may_ride <- read_csv("may_2021.csv")
+june_ride <- read_csv("june_2021.csv")
+july_ride <- read_csv("july_2021.csv")
+aug_ride <- read_csv("aug_2021.csv")
+sept_ride <- read_csv("sept_2021.csv")
+oct_ride <- read_csv("oct_2021.csv")
+nov_ride <- read_csv("nov_2021.csv")
+dec_ride <- read_csv("dec_2021.csv")
+
+```
+
+I combined all the 12 months with rbind so as to make it easy to analyse
+
+``` r
+ride_2021 <- rbind(jan_ride, feb_ride, mar_ride, april_ride,may_ride, june_ride, july_ride, aug_ride, sept_ride, oct_ride, nov_ride, dec_ride)
+```
+
+I used the glimpse() function to look at the column name and also some row in the dataset. This shows that there are 15 columns and 5595063 rows in the dataset
+
+![glimpse](https://user-images.githubusercontent.com/89348077/163691116-ff95646a-8d9a-4415-97fd-6dd99734287a.JPG)
+
 
 
 
