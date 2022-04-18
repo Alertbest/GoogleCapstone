@@ -112,8 +112,14 @@ To gain more insight from the started_at column, the column was converted into a
 
 ``` r
 trimmed_ride_2021$start_time <- strptime(trimmed_ride_2021$started_at, format = "%m/%d/%Y %H:%M")
-trimmed_ride_2021$day <- format(trimmed_ride_2021$start_time,  "%a") -- to create a new column with the day of the week from the started_at column
-trimmed_ride_2021$month <- format(trimmed_ride_2021$start_time,  "%b")  -- to create a new column with the day of the week from the started_at column
+trimmed_ride_2021$day <- format(trimmed_ride_2021$start_time,  "%a") # to create a new column with the day of the week from the started_at column
+trimmed_ride_2021$month <- format(trimmed_ride_2021$start_time,  "%b")  # to create a new column with the day of the week from the started_at column
+```
+The ride_length column was converted to numeric so as to make it possible to do calculation on the column
+``` r 
+is.factor(trimmed_ride_2021$ride_length)
+trimmed_ride_2021$ride_length <- as.numeric(as.character(trimmed_ride_2021$ride_length))
+is.numeric(trimmed_ride_2021$ride_length)
 ```
 
 
