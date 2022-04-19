@@ -122,7 +122,19 @@ trimmed_ride_2021$ride_length <- as.numeric(as.character(trimmed_ride_2021$ride_
 is.numeric(trimmed_ride_2021$ride_length)
 ```
 
-
+I created another column from the ride_length column which converted the column into minutes, this new column is named ride_lenth_minute.
+``` r
+trimmed_ride_2021$ride_length_minute <- floor(trimmed_ride_2021$ride_length/60)
+```
+I then filter out all rides that are less than 1 minute and rides that are more than 1 day
+``` r
+cleaned_ride_2021 <- trimmed_ride_2021 %>% filter(ride_length_minute > 1) %>% 
+     filter(ride_length_minute < 1440)
+```
+This made my total rows to be  5390427
+``` r
+nrow(cleaned_ride_2021)
+```
 
 
 
