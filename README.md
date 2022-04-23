@@ -146,6 +146,14 @@ This made my total rows to be  5390427
 ``` r
 nrow(cleaned_ride_2021)
 ```
+I checked the data for the day with the highest number of ride. I was able to confirm that Cyclistic have the highest number of ride on Saturday
+``` r
+trimmed_ride_2021 %>% group_by(day) %>% 
+  summarise(count=n()) %>% arrange(desc(count)) %>% View()
+  
+```
+![image](https://user-images.githubusercontent.com/89348077/164948874-a0fc0fc0-884e-4d46-8a3a-3e9954e14561.png)
+
 
 
 
