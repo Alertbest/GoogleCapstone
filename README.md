@@ -108,6 +108,17 @@ colnames(trimmed_ride_2021)
 ```
 ![image](https://user-images.githubusercontent.com/89348077/163691695-655b7e15-b4c5-41d2-8e6b-1237086fe1d9.png)
 
+I checked the total number of rows in the dataset and this returned a total of 5,595,063
+``` r
+nrow(trimmed_ride_2021)
+```
+I checked the ride_type column to know the type of rides that are available and to check whether there is any outliner
+``` r
+unique(trimmed_ride_2021$ride_type)
+```
+![image](https://user-images.githubusercontent.com/89348077/164936156-9aec2604-e49c-4622-b37c-c83b145b814a.png)
+
+
 To gain more insight from the started_at column, the column was converted into an object of class 'POSIXit' and then the day and month are extracted into another column
 
 ``` r
