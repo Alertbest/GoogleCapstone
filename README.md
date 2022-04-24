@@ -162,6 +162,24 @@ cleaned_ride_2021 %>%  # this was used to get the mean, median, max and min
 
 ![image](https://user-images.githubusercontent.com/89348077/164951128-f4b853a6-6313-4040-9bdd-e3b217955f7b.png)
 
+I compared the ride length mean between the member and casual riders
+``` r
+aggregate(cleaned_ride_2021$ride_length ~ cleaned_ride_2021$member_casual, FUN = mean)
+```
+![image](https://user-images.githubusercontent.com/89348077/164951386-e24aa013-5f11-4304-8ccf-413380a35190.png)
+
+aggregate(cleaned_ride_2021$ride_length ~ cleaned_ride_2021$member_casual, FUN = median)
+
+![image](https://user-images.githubusercontent.com/89348077/164951405-9cc9974a-cf10-4be7-a74b-d0532ffe60e2.png)
+
+
+The maximum ride duration which is represented by ride_length for Casual riders is 1439 minutes and member riders have a maximum ride_length of 1439 minutes, the minimum ride length for both casual riders and member rider is 2 minutes
+```r
+aggregate(cleaned_ride_2021$ride_length_minute ~ cleaned_ride_2021$member_casual, FUN = max)
+aggregate(cleaned_ride_2021$ride_length_minute ~ cleaned_ride_2021$member_casual, FUN = min)
+```
+![image](https://user-images.githubusercontent.com/89348077/164951591-9af9d96b-c37c-4325-986c-30e278ddf8b7.png)
+
 
 
 
