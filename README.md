@@ -133,7 +133,7 @@ trimmed_ride_2021$ride_length <- as.numeric(as.character(trimmed_ride_2021$ride_
 is.numeric(trimmed_ride_2021$ride_length)
 ```
 
-I created another column from the ride_length column which converted the column into minutes, this new column is named ride_lenth_minute.
+I created another column from the ride_length column which converted the column into minutes, this new column is named ride_length_minute.
 ``` r
 trimmed_ride_2021$ride_length_minute <- floor(trimmed_ride_2021$ride_length/60)
 ```
@@ -148,11 +148,26 @@ nrow(cleaned_ride_2021)
 ```
 I checked the data for the day with the highest number of ride. I was able to confirm that Cyclistic have the highest number of ride on Saturday
 ``` r
-trimmed_ride_2021 %>% group_by(day) %>% 
+cleaned_ride_2021 %>% group_by(day) %>% 
   summarise(count=n()) %>% arrange(desc(count)) %>% View()
   
 ```
-![image](https://user-images.githubusercontent.com/89348077/164948874-a0fc0fc0-884e-4d46-8a3a-3e9954e14561.png)
+![image](https://user-images.githubusercontent.com/89348077/164950879-7fa9370a-19d7-4e0d-877d-eeabb9027797.png)
+
+The summarise() function was used to calcualte the mean, median, max and mean of the data
+``` r
+cleaned_ride_2021 %>%  # this was used to get the mean, median, max and min
+  summarise(mean=mean(ride_length_minute), median=median(ride_length_minute), max=max(ride_length_minute), min=min(ride_length_minute))
+```
+
+![image](https://user-images.githubusercontent.com/89348077/164951128-f4b853a6-6313-4040-9bdd-e3b217955f7b.png)
+
+
+
+
+
+
+
 
 
 
