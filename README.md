@@ -181,7 +181,10 @@ aggregate(cleaned_ride_2021$ride_length_minute ~ cleaned_ride_2021$member_casual
 ![image](https://user-images.githubusercontent.com/89348077/164951591-9af9d96b-c37c-4325-986c-30e278ddf8b7.png)
 
 
-
+I export the file with write.csv() for further visualization on PowerBi
+``` r
+write.csv(cleaned_ride_2021,"C:\\Users\\Public\\Documents\\Cyclistic.csv", row.names=FALSE)
+```
 
 
 
