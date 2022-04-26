@@ -186,6 +186,15 @@ I export the file with write.csv() for further visualization on PowerBi
 write.csv(cleaned_ride_2021,"C:\\Users\\Public\\Documents\\Cyclistic.csv", row.names=FALSE)
 ```
 
+## Visualization With GGPlot
+I compared the numbers of ride for each day and the day with the highest number of ride throughout the year was Saturday
+``` r
+ggplot(data=cleaned_ride_2021)+
+  geom_bar(mapping=aes(reorder(x=day,-ride_length_minute), fill=day))+ labs(x= "Day", title="The Number Of Ride Per Day")
+```
+![image](https://user-images.githubusercontent.com/89348077/165398958-cf6feae0-3f6d-454e-a6c3-c7678109edab.png)
+
+
 
 
 
