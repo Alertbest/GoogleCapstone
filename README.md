@@ -146,21 +146,35 @@ This made my total rows to be  5390427
 ``` r
 nrow(cleaned_ride_2021)
 ```
+
+All rows with NULL values were removed from the dataset so as to make it easy for analysis
+``` r
+cleaned_ride2_2021 <- cleaned_ride_2021 %>% drop_na()
+```
+I checked to confirm whether there is any NULL value
+```r
+sapply(cleaned_ride2_2021, function(x) sum(is.na(x))) # checking for null rows in each column
+```
+![image](https://user-images.githubusercontent.com/89348077/165639374-9ae556ea-75fc-424e-994f-107ba5a047ae.png)
+
+
 I checked the data for the day with the highest number of ride. I was able to confirm that Cyclistic have the highest number of ride on Saturday
 ``` r
-cleaned_ride_2021 %>% group_by(day) %>% 
+cleaned_ride2_2021 %>% group_by(day) %>% 
   summarise(count=n()) %>% arrange(desc(count)) %>% View()
   
 ```
-![image](https://user-images.githubusercontent.com/89348077/164950879-7fa9370a-19d7-4e0d-877d-eeabb9027797.png)
+![image](https://user-images.githubusercontent.com/89348077/165639579-bb0ebc70-f0f2-4ad8-9ecc-3a5370877590.png)
+
 
 The summarise() function was used to calcualte the mean, median, max and mean of the data
 ``` r
-cleaned_ride_2021 %>%  # this was used to get the mean, median, max and min
+cleaned_ride2_2021 %>%  # this was used to get the mean, median, max and min
   summarise(mean=mean(ride_length_minute), median=median(ride_length_minute), max=max(ride_length_minute), min=min(ride_length_minute))
 ```
 
-![image](https://user-images.githubusercontent.com/89348077/164951128-f4b853a6-6313-4040-9bdd-e3b217955f7b.png)
+![image](https://user-images.githubusercontent.com/89348077/165640104-2ad6da3f-e923-4489-8057-6e5d8cb54da6.png)
+
 
 I compared the ride length mean between the member and casual riders
 ``` r
