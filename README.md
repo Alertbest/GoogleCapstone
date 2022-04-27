@@ -194,6 +194,18 @@ ggplot(data=cleaned_ride_2021)+
 ```
 ![image](https://user-images.githubusercontent.com/89348077/165398958-cf6feae0-3f6d-454e-a6c3-c7678109edab.png)
 
+I visualise the number of ride per month with special attention to the membership in each month. I observed that the month with the highest number of ride is July and the month with lowest ride number is February. 
+
+```r
+ggplot(data=cleaned_ride_2021)+
+  geom_bar(mapping=aes(reorder(x=month,member_casual), fill=member_casual))+ labs(x= "Month", title="Visualization of Monthly Ride Membership")
+  ```
+  ![image](https://user-images.githubusercontent.com/89348077/165591066-1d8ef226-a699-4995-b58f-44c8a3d48d26.png)
+
+  
+
+  
+
 
 
 
