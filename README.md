@@ -118,21 +118,6 @@ unique(trimmed_ride_2021$ride_type)
 ```
 ![image](https://user-images.githubusercontent.com/89348077/164936156-9aec2604-e49c-4622-b37c-c83b145b814a.png)
 
-
-To gain more insight from the started_at column, the column was converted into an object of class 'POSIXit' and then the day and month are extracted into another column
-
-``` r
-trimmed_ride_2021$start_time <- strptime(trimmed_ride_2021$started_at, format = "%m/%d/%Y %H:%M")
-trimmed_ride_2021$day <- format(trimmed_ride_2021$start_time,  "%a") # to create a new column with the day of the week from the started_at column
-trimmed_ride_2021$month <- format(trimmed_ride_2021$start_time,  "%b")  # to create a new column with the day of the week from the started_at column
-```
-The ride_length column was converted to numeric so as to make it possible to do calculation on the column
-``` r 
-is.factor(trimmed_ride_2021$ride_length)
-trimmed_ride_2021$ride_length <- as.numeric(as.character(trimmed_ride_2021$ride_length))
-is.numeric(trimmed_ride_2021$ride_length)
-```
-
 I created another column from the ride_length column which converted the column into minutes, this new column is named ride_length_minute.
 ``` r
 trimmed_ride_2021$ride_length_minute <- floor(trimmed_ride_2021$ride_length/60)
@@ -142,9 +127,20 @@ I then filter out all rides that are less than 1 minute and rides that are more 
 cleaned_ride_2021 <- trimmed_ride_2021 %>% filter(ride_length_minute > 1) %>% 
      filter(ride_length_minute < 1440)
 ```
-This made my total rows to be  5390427
+
+To gain more insight from the started_at column, day and month are extracted into another column
+
 ``` r
-nrow(cleaned_ride_2021)
+trimmed_ride_2021$start_time <- strptime(trimmed_ride_2021$started_at, format = "%m/%d/%Y %H:%M")
+cleaned_ride2_2021$week_day <- weekdays(cleaned_ride2_2021$start_time) # to extract the day of the week
+cleaned_ride2_2021$month <- as.numeric(format(cleaned_ride2_2021$start_time, '%B'))  # to create a new column with the month from the started_at column
+```
+
+The ride_length column was converted to numeric so as to make it possible to do calculation on the column
+``` r 
+is.factor(cleaned_ride2_2021$ride_length)
+cleaned_ride2_2021$ride_length <- as.numeric(as.character(cleaned_ride2_2021$ride_length))
+is.numeric(cleaned_ride_2021$ride_length)
 ```
 
 All rows with NULL values were removed from the dataset so as to make it easy for analysis
@@ -160,7 +156,7 @@ sapply(cleaned_ride2_2021, function(x) sum(is.na(x))) # checking for null rows i
 
 I checked the data for the day with the highest number of ride. I was able to confirm that Cyclistic have the highest number of ride on Saturday
 ``` r
-cleaned_ride2_2021 %>% group_by(day) %>% 
+cleaned_ride2_2021 %>% group_by(week_day) %>% 
   summarise(count=n()) %>% arrange(desc(count)) %>% View()
   
 ```
@@ -178,43 +174,45 @@ cleaned_ride2_2021 %>%  # this was used to get the mean, median, max and min
 
 I compared the ride length mean between the member and casual riders
 ``` r
-aggregate(cleaned_ride_2021$ride_length ~ cleaned_ride_2021$member_casual, FUN = mean)
+aggregate(cleaned_ride2_2021$ride_length ~ cleaned_ride_2021$member_casual, FUN = mean)
 ```
 ![image](https://user-images.githubusercontent.com/89348077/164951386-e24aa013-5f11-4304-8ccf-413380a35190.png)
 
-aggregate(cleaned_ride_2021$ride_length ~ cleaned_ride_2021$member_casual, FUN = median)
+aggregate(cleaned_ride2_2021$ride_length ~ cleaned_ride_2021$member_casual, FUN = median)
 
 ![image](https://user-images.githubusercontent.com/89348077/164951405-9cc9974a-cf10-4be7-a74b-d0532ffe60e2.png)
 
 
 The maximum ride duration which is represented by ride_length for Casual riders is 1439 minutes and member riders have a maximum ride_length of 1439 minutes, the minimum ride length for both casual riders and member rider is 2 minutes
 ```r
-aggregate(cleaned_ride_2021$ride_length_minute ~ cleaned_ride_2021$member_casual, FUN = max)
-aggregate(cleaned_ride_2021$ride_length_minute ~ cleaned_ride_2021$member_casual, FUN = min)
+aggregate(cleaned_ride2_2021$ride_length_minute ~ cleaned_ride2_2021$member_casual, FUN = max)
+aggregate(cleaned_ride2_2021$ride_length_minute ~ cleaned_ride2_2021$member_casual, FUN = min)
 ```
 ![image](https://user-images.githubusercontent.com/89348077/164951591-9af9d96b-c37c-4325-986c-30e278ddf8b7.png)
 
 
 I export the file with write.csv() for further visualization on PowerBi
 ``` r
-write.csv(cleaned_ride_2021,"C:\\Users\\Public\\Documents\\Cyclistic.csv", row.names=FALSE)
+write.csv(cleaned_ride2_2021,"C:\\Users\\Public\\Documents\\Cyclistic.csv", row.names=FALSE)
 ```
 
 ## Visualization With GGPlot
 I compared the numbers of ride for each day and the day with the highest number of ride throughout the year was Saturday
 ``` r
-ggplot(data=cleaned_ride_2021)+
-  geom_bar(mapping=aes(reorder(x=day,-ride_length_minute), fill=day))+ labs(x= "Day", title="The Number Of Ride Per Day")
+ggplot(data=cleaned_ride2_2021)+
+  geom_bar(mapping=aes(reorder(x=week_day,-ride_length_minute), fill=week_day))+ labs(x= "Day", title="The Number Of Ride Per Day")
 ```
-![image](https://user-images.githubusercontent.com/89348077/165398958-cf6feae0-3f6d-454e-a6c3-c7678109edab.png)
+![image](https://user-images.githubusercontent.com/89348077/165650839-cc9a05a6-2f88-46f9-b88c-7e0948a89e85.png)
+
 
 I visualise the number of ride per month with special attention to the membership in each month. I observed that the month with the highest number of ride is July and the month with lowest ride number is February. 
 
 ```r
-ggplot(data=cleaned_ride_2021)+
+ggplot(data=cleaned_ride2_2021)+
   geom_bar(mapping=aes(reorder(x=month,member_casual), fill=member_casual))+ labs(x= "Month", title="Visualization of Monthly Ride Membership")
   ```
-  ![image](https://user-images.githubusercontent.com/89348077/165591066-1d8ef226-a699-4995-b58f-44c8a3d48d26.png)
+  ![image](https://user-images.githubusercontent.com/89348077/165650667-b568a869-f0e3-45ac-abdd-8190ef0c7495.png)
+
 
   
 
