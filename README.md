@@ -11,7 +11,7 @@ As a Junior Data Analyst in the Cyclistic Marketing Analytics Team, Lily Moreno(
 
 ## BUSINESS TASK
 
-The available data will be used to understand how casual and annual members use cyclistic bike differently with a view to improve the annual membership rate of the company.
+The available data will be used to understand how casual and annual members use cyclistic bike differently  in 2021 with a view to improve the annual membership rate of the company.
 
 ## DATA PREPARATION
 
@@ -153,6 +153,8 @@ sapply(cleaned_ride2_2021, function(x) sum(is.na(x))) # checking for null rows i
 ```
 ![image](https://user-images.githubusercontent.com/89348077/165639374-9ae556ea-75fc-424e-994f-107ba5a047ae.png)
 
+## Conducting Descriptive Analysis
+
 
 I checked the data for the day with the highest number of ride. I was able to confirm that Cyclistic have the highest number of ride on Saturday
 ``` r
@@ -212,6 +214,11 @@ ggplot(data=cleaned_ride2_2021)+
   geom_bar(mapping=aes(reorder(x=month,member_casual), fill=member_casual))+ labs(x= "Month", title="Visualization of Monthly Ride Membership")
   ```
   ![image](https://user-images.githubusercontent.com/89348077/165650667-b568a869-f0e3-45ac-abdd-8190ef0c7495.png)
+  
+  ## Insight from the data
+  
+  - From the data, it is established that there are two types of membership. These are Annual and Casual members, the annual members are members that have subscription with Cyclistic while Casual members are members that share bike for their short time need. The number of members is 2447561 which represent 55.18% of the total membership while Casual members are 1987920 which represents 44.82% of the total membership for the year.
+  - The day with the highest number of ride is Saturday which had a total ride of 
 
 
   
