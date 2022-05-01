@@ -1,4 +1,4 @@
-# Google-DAC
+# Google-Data Analysis Capstone
 This is the repository for my Google Data Analysis Course Capstone
 
 # INTRODUCTION
