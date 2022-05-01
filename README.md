@@ -215,10 +215,17 @@ ggplot(data=cleaned_ride2_2021)+
   ```
   ![image](https://user-images.githubusercontent.com/89348077/165650667-b568a869-f0e3-45ac-abdd-8190ef0c7495.png)
   
-  ## Insight from the data
+  ## Insight From The Data
   
   - From the data, it is established that there are two types of membership. These are Annual and Casual members, the annual members are members that have subscription with Cyclistic while Casual members are members that share bike for their short time need. The number of members is 2447561 which represent 55.18% of the total membership while Casual members are 1987920 which represents 44.82% of the total membership for the year.
-  - The day with the highest number of ride is Saturday which had a total ride of 
+  - The day with the highest number of ride was Saturday which had a total ride of 796234. From this number, Casual Members are 453035 while members are 343199. The day with the lowest number of rides is Monday with a total ride of 554208, the casual members had 220981 rides while members had 333227 rides. A noticeable trend in the distribution of days with lowest and highest ride is that days with highest ride have more rides from the casual members, these days are Saturday, Sunday and Friday. The days with the lowest ride numbers are Wednesday, Tuesday, Thursday and Monday, these days have more numbers of riders that are member.
+  - The month with the highest number of ride was July, this can be due to the fact that this is the second month in Summer where people do not need to be afraid of rain or cold. The month with the lowest number of ride in 2021 was February, this could be because this period is also known as Season of cold.
+
+
+## Recommendations
+- Since it is clear from the data that there are more rides on Weekends(Saturday, Sunday, Friday) and that the major category of riders in this period are Casual riders. Cyclistic can provide a discount for riders that purchase the membership subscription in this period.
+- Stations like 351, Campbell Avenue & 51st Avenue and other stations will low ride can be targeted with massive digital campaign.
+
 
 
   
