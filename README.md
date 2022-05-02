@@ -230,6 +230,7 @@ ggplot(data=cleaned_ride2_2021)+
 ## Recommendations
 - Since it is clear from the data that there are more rides on Weekends(Saturday, Sunday, Friday) and that the major category of riders in this period are Casual riders. Cyclistic can provide a discount for riders that purchase the membership subscription in this period.
 - Stations like 351, Campbell Avenue & 51st Avenue and other stations will low ride can be targeted with massive digital campaign.
+- Incentive and discount for riders that ride in the month of December, January, February and March
 
 
 
